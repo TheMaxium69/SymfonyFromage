@@ -22,32 +22,32 @@ class Fromage
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"conference:list", "conference:item"})
      */
-    #[Groups(['conference:list', 'conference:item'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"conference:list", "conference:item"})
      */
-    #[Groups(['conference:list', 'conference:item'])]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"conference:list", "conference:item"})
      */
-    #[Groups(['conference:list', 'conference:item'])]
     private $origin;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"conference:list", "conference:item"})
      */
-    #[Groups(['conference:list', 'conference:item'])]
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"conference:list", "conference:item"})
      */
-    #[Groups(['conference:list', 'conference:item'])]
     private $description;
 
     public function getId(): ?int

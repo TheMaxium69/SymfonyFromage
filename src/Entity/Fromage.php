@@ -12,7 +12,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ApiResource(
  *     collectionOperations={"get"={"normalization_context"={"groups"="conference:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="conference:item"}}},
  *     paginationEnabled=false
  * )
  */
@@ -22,33 +21,39 @@ class Fromage
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"conference:list", "conference:item"})
+     * @Groups({"conference:list", "conference:listCat"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"conference:list", "conference:item"})
+     * @Groups({"conference:list", "conference:listCat"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"conference:list", "conference:item"})
+     * @Groups({"conference:list", "conference:listCat"})
      */
     private $origin;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"conference:list", "conference:item"})
+     * @Groups({"conference:list", "conference:listCat"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"conference:list", "conference:item"})
+     * @Groups({"conference:list", "conference:listCat"})
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="fromage")
+     * @Groups({"conference:list", "conference:item"})
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -99,6 +104,18 @@ class Fromage
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

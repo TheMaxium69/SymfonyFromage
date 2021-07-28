@@ -9,11 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=FromageRepository::class)
- *
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="conference:list"}}},
- *     paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Fromage
 {
@@ -21,37 +17,31 @@ class Fromage
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $origin;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="fromage")
-     * @Groups({"conference:list", "conference:item"})
      */
     private $category;
 

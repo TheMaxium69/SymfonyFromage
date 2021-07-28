@@ -11,11 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
- *
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="conference:listCat"}}},
- *     paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Category
 {
@@ -23,25 +19,21 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"conference:list", "conference:listCat"})
      */
     private $description;
 
     /**
      * @ORM\OneToMany(targetEntity=Fromage::class, mappedBy="category")
-     * @Groups({"conference:listCat"})
      */
     private $fromage;
 

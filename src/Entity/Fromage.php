@@ -2,11 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\FromageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=FromageRepository::class)
+ *
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="conference:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="conference:item"}}},
+ *     paginationEnabled=false
+ * )
  */
 class Fromage
 {
@@ -15,26 +23,31 @@ class Fromage
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups(['conference:list', 'conference:item'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['conference:list', 'conference:item'])]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['conference:list', 'conference:item'])]
     private $origin;
 
     /**
      * @ORM\Column(type="integer")
      */
+    #[Groups(['conference:list', 'conference:item'])]
     private $price;
 
     /**
      * @ORM\Column(type="text")
      */
+    #[Groups(['conference:list', 'conference:item'])]
     private $description;
 
     public function getId(): ?int
